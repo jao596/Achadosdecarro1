@@ -8,6 +8,16 @@
   <!-- Fonte -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7Z0Z4X4D94"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7Z0Z4X4D94');
+  </script>
+  <!-- End Google Analytics -->
+
   <!-- Meta Pixel Code -->
   <script>
   !function(f,b,e,v,n,t,s)
@@ -24,6 +34,14 @@
 
   function trackLeadAndRedirect(url) {
     fbq('track', 'Lead');
+
+    // ✅ Google Analytics (GA4) - evento de clique
+    if (typeof gtag === 'function') {
+      gtag('event', 'click_whatsapp_grupo', {
+        link_url: url
+      });
+    }
+
     setTimeout(function () {
       window.location.href = url;
     }, 400);
@@ -136,13 +154,11 @@
   <p>Cupons e ofertas exclusivas de peças, acessórios e carros todos os dias</p>
   <span class="badge">OFERTAS DE ATÉ 70% OFF</span>
 
-  <!-- IMAGEM -->
   <img src="https://i.postimg.cc/prSYnT3Q/fotoooo.jpg"
        alt="Promoções Automotivas"
        class="pulse-img"
        onclick="trackLeadAndRedirect('https://chat.whatsapp.com/LPTuUYypTMi462aHd7XvlZ')">
 
-  <!-- BOTÃO -->
   <a class="cta-button"
      onclick="trackLeadAndRedirect('https://chat.whatsapp.com/LPTuUYypTMi462aHd7XvlZ')">
     QUERO PARTICIPAR
