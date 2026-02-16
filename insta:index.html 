@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content="0; url=https://achadosdecarro.com.br/?utm_source=instagram&utm_medium=organico&utm_campaign=bio" />
+    <title>Redirecionando...</title>
+    <script>
+      window.location.replace("https://achadosdecarro.com.br/?utm_source=instagram&utm_medium=organico&utm_campaign=bio");
+    </script>
+  </head>
+  <body>
+    <p>Redirecionando...</p>
+  </body>
+</html>
