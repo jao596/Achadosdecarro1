@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Promoções Automotivas no WhatsApp!</title>
 
-  <!-- Fonte -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7Z0Z4X4D94"></script>
@@ -16,28 +15,27 @@
     gtag('js', new Date());
     gtag('config', 'G-7Z0Z4X4D94');
   </script>
-  <!-- End Google Analytics -->
 
-  <!-- Meta Pixel Code -->
+  <!-- Meta Pixel -->
   <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
+  !function(f,b,e,v,n,t,s){
+    if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)
+  }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
 
   fbq('init', '1892150962178349');
   fbq('track', 'PageView');
 
-  function trackLeadAndRedirect(url) {
+  function trackLeadAndRedirect(url, grupo) {
     fbq('track', 'Lead');
 
-    // ✅ Google Analytics (GA4) - evento de clique
     if (typeof gtag === 'function') {
       gtag('event', 'click_whatsapp_grupo', {
+        grupo: grupo,
         link_url: url
       });
     }
@@ -52,97 +50,194 @@
     <img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1892150962178349&ev=PageView&noscript=1"/>
   </noscript>
-  <!-- End Meta Pixel Code -->
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
-      background-color: #111111;
+      background: radial-gradient(circle at top, #2a2a2a 0%, #111 45%, #050505 100%);
       color: #ffffff;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-height: 100vh;
     }
 
     header {
       text-align: center;
-      padding: 50px 20px 20px;
-      max-width: 600px;
+      padding: 42px 18px 24px;
+      max-width: 650px;
+      width: 100%;
     }
 
-    header h2 {
-      font-size: 2.2rem;
-      margin-bottom: 15px;
+    .top-label {
+      display: inline-block;
+      background: rgba(255, 215, 0, 0.12);
+      color: #FFD700;
+      border: 1px solid rgba(255, 215, 0, 0.45);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: 2.25rem;
+      line-height: 1.12;
+      margin: 0 0 14px;
+      color: #ffffff;
+      text-shadow: 1px 1px 4px #000;
+      font-weight: 900;
+    }
+
+    h1 span {
       color: #E53935;
-      text-shadow: 1px 1px 3px #000;
     }
 
-    header p {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-      color: #C0C0C0;
+    .subtitle {
+      font-size: 1.14rem;
+      color: #d1d1d1;
+      margin: 0 auto 18px;
+      line-height: 1.45;
+      max-width: 540px;
     }
 
     .badge {
-      font-weight: bold;
+      font-weight: 900;
       color: #FFD700;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
       display: block;
+      font-size: 1rem;
     }
 
     .pulse-img {
       width: 150px;
       height: 150px;
+      object-fit: cover;
       border-radius: 50%;
       display: block;
-      margin: 0 auto 20px;
-      box-shadow: 0 5px 15px rgba(229,57,53,0.6);
+      margin: 0 auto 22px;
+      box-shadow: 0 5px 22px rgba(229,57,53,0.7);
       animation: pulse 1.5s infinite;
       cursor: pointer;
+      border: 3px solid #E53935;
     }
 
     @keyframes pulse {
       0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
+      50% { transform: scale(1.08); }
       100% { transform: scale(1); }
     }
 
     .cta-button {
-      display: inline-block;
-      padding: 20px 40px;
-      background-color: #E53935;
+      display: block;
+      width: 100%;
+      max-width: 430px;
+      margin: 0 auto;
+      padding: 20px 28px;
+      background: linear-gradient(135deg, #E53935, #b91c1c);
       color: #fff;
-      font-size: 1.5rem;
-      font-weight: bold;
-      border-radius: 10px;
+      font-size: 1.35rem;
+      font-weight: 900;
+      border-radius: 14px;
       text-decoration: none;
-      box-shadow: 0 5px 15px rgba(229,57,53,0.5);
-      margin-top: 10px;
-      transition: transform 0.2s ease;
+      box-shadow: 0 8px 22px rgba(229,57,53,0.5);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
       cursor: pointer;
     }
 
     .cta-button:hover {
-      transform: scale(1.05);
+      transform: scale(1.03);
+      box-shadow: 0 10px 28px rgba(229,57,53,0.65);
+    }
+
+    .small-note {
+      margin-top: 12px;
+      color: #bdbdbd;
+      font-size: 0.92rem;
     }
 
     .social-proof {
-      margin-top: 30px;
-      font-size: 1.2rem;
+      margin-top: 24px;
+      font-size: 1.12rem;
       color: #FFD700;
-      font-weight: bold;
+      font-weight: 900;
+    }
+
+    .secondary-box {
+      margin: 30px auto 0;
+      max-width: 430px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 18px;
+      text-align: left;
+    }
+
+    .secondary-box strong {
+      display: block;
+      color: #ffffff;
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+
+    .secondary-box p {
+      color: #cfcfcf;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      margin: 0 0 14px;
+    }
+
+    .secondary-button {
+      display: block;
+      text-align: center;
+      padding: 14px 18px;
+      border-radius: 12px;
+      background: #222;
+      color: #fff;
+      border: 1px solid #444;
+      text-decoration: none;
+      font-weight: 700;
+      cursor: pointer;
     }
 
     footer {
       margin-top: auto;
-      padding: 20px;
-      font-size: 0.8rem;
+      padding: 18px;
+      font-size: 0.78rem;
       text-align: center;
-      color: #C0C0C0;
-      background-color: #222222;
+      color: #a8a8a8;
+      background-color: #181818;
       width: 100%;
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding-top: 34px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .subtitle {
+        font-size: 1rem;
+      }
+
+      .cta-button {
+        font-size: 1.15rem;
+        padding: 18px 22px;
+      }
+
+      .pulse-img {
+        width: 135px;
+        height: 135px;
+      }
     }
   </style>
 </head>
@@ -150,21 +245,41 @@
 <body>
 
 <header>
-  <h2>🚗 PROMOÇÕES AUTOMOTIVAS DIRETO NO WHATSAPP</h2>
-  <p>Cupons e ofertas exclusivas de peças, acessórios e carros todos os dias</p>
-  <span class="badge">OFERTAS DE ATÉ 70% OFF</span>
+  <span class="top-label">Grupo gratuito no WhatsApp</span>
+
+  <h1>🚗 Promoções <span>Automotivas</span> todos os dias</h1>
+
+  <p class="subtitle">
+    Entre no grupo e receba ofertas de peças, acessórios, carros, cupons e achados automotivos direto no WhatsApp.
+  </p>
+
+  <span class="badge">🔥 OFERTAS DE ATÉ 70% OFF</span>
 
   <img src="https://i.postimg.cc/prSYnT3Q/fotoooo.jpg"
        alt="Promoções Automotivas"
        class="pulse-img"
-       onclick="trackLeadAndRedirect('https://chat.whatsapp.com/DXcOxxzvqDy4IMXRhvuxXe')">
+       onclick="trackLeadAndRedirect('https://chat.whatsapp.com/DXcOxxzvqDy4IMXRhvuxXe', 'automotivo')">
 
   <a class="cta-button"
-     onclick="trackLeadAndRedirect('https://chat.whatsapp.com/DXcOxxzvqDy4IMXRhvuxXe')">
-    QUERO PARTICIPAR
+     onclick="trackLeadAndRedirect('https://chat.whatsapp.com/DXcOxxzvqDy4IMXRhvuxXe', 'automotivo')">
+    ENTRAR NO GRUPO AUTOMOTIVO
   </a>
 
+  <div class="small-note">Acesso gratuito • Ofertas atualizadas diariamente</div>
+
   <div class="social-proof">💥 SOMOS + DE 15 MIL MEMBROS 💥</div>
+
+  <div class="secondary-box">
+    <strong>💪 Também quer ofertas masculinas?</strong>
+    <p>
+      Temos um grupo separado com promoções de camisa, relógio, creatina, tênis, perfume e achados para o dia a dia.
+    </p>
+
+    <a class="secondary-button"
+       onclick="trackLeadAndRedirect('https://chat.whatsapp.com/LTVTd2ZklRWGXh4FoiRNuf?mode=gi_t', 'alphafit')">
+      Ver grupo AlphaFit
+    </a>
+  </div>
 </header>
 
 <footer>
