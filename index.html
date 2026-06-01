@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Promoções Automotivas no WhatsApp!</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7Z0Z4X4D94"></script>
@@ -25,267 +27,489 @@
     n.queue=[];t=b.createElement(e);t.async=!0;
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)
-  }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-
-  fbq('init', '1892150962178349');
-  fbq('track', 'PageView');
+  }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','1892150962178349');
+  fbq('track','PageView');
 
   function trackLeadAndRedirect(url, grupo) {
     fbq('track', 'Lead');
-
     if (typeof gtag === 'function') {
-      gtag('event', 'click_whatsapp_grupo', {
-        grupo: grupo,
-        link_url: url
-      });
+      gtag('event', 'click_whatsapp_grupo', { grupo: grupo, link_url: url });
     }
-
-    setTimeout(function () {
-      window.location.href = url;
-    }, 400);
+    setTimeout(function(){ window.location.href = url; }, 400);
   }
   </script>
-
   <noscript>
     <img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1892150962178349&ev=PageView&noscript=1"/>
   </noscript>
 
   <style>
-    * {
-      box-sizing: border-box;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:        #E53935;
+      --red-deep:   #b91c1c;
+      --red-glow:   rgba(229,57,53,.45);
+      --gold:       #FFD700;
+      --gold-soft:  rgba(255,215,0,.12);
+      --bg-deep:    #0a0a0a;
+      --bg-mid:     #141414;
+      --text-main:  #ffffff;
+      --text-sub:   #cfcfcf;
+      --text-muted: #888;
     }
 
+    html { scroll-behavior: smooth; }
+
     body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background: radial-gradient(circle at top, #2a2a2a 0%, #111 45%, #050505 100%);
-      color: #ffffff;
+      font-family: 'Nunito Sans', sans-serif;
+      background: radial-gradient(ellipse 120% 60% at 50% 0%, #2a0a0a 0%, #111 40%, #050505 100%);
+      color: var(--text-main);
       min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── TICKER ── */
+    .ticker {
+      background: #0f0f0f;
+      border-bottom: 1px solid rgba(229,57,53,.2);
+      padding: 9px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .ticker-track {
+      display: inline-block;
+      animation: ticker 28s linear infinite;
+    }
+    .ticker-track span {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: .8rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #888;
+      padding: 0 28px;
+    }
+    .ticker-track span::before {
+      content: '🚗 ';
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
-    }
-
-    header {
       text-align: center;
-      padding: 42px 18px 24px;
-      max-width: 650px;
-      width: 100%;
+      padding: 56px 20px 72px;
+      min-height: calc(100vh - 40px);
+      overflow: hidden;
     }
 
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 65% 45% at 50% 20%, rgba(229,57,53,.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 15% 85%, rgba(229,57,53,.07) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 85% 75%, rgba(255,215,0,.04) 0%, transparent 60%);
+      animation: glowShift 8s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+    @keyframes glowShift {
+      from { opacity:.7; transform:scale(1); }
+      to   { opacity:1;  transform:scale(1.05); }
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.08) 1px, transparent 1px);
+      background-size: 44px 44px;
+      opacity: .18;
+      pointer-events: none;
+    }
+
+    .hero > * { position: relative; z-index: 1; }
+
+    /* top label */
     .top-label {
       display: inline-block;
-      background: rgba(255, 215, 0, 0.12);
-      color: #FFD700;
-      border: 1px solid rgba(255, 215, 0, 0.45);
-      padding: 8px 14px;
+      background: var(--gold-soft);
+      color: var(--gold);
+      border: 1px solid rgba(255,215,0,.45);
+      padding: 8px 18px;
       border-radius: 999px;
-      font-size: 0.9rem;
-      font-weight: 700;
-      margin-bottom: 18px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: .88rem;
+      letter-spacing: .04em;
+      margin-bottom: 28px;
+      animation: fadeUp .6s ease both;
     }
 
-    h1 {
-      font-size: 2.25rem;
-      line-height: 1.12;
-      margin: 0 0 14px;
-      color: #ffffff;
-      text-shadow: 1px 1px 4px #000;
-      font-weight: 900;
-    }
-
-    h1 span {
-      color: #E53935;
-    }
-
-    .subtitle {
-      font-size: 1.14rem;
-      color: #d1d1d1;
-      margin: 0 auto 18px;
-      line-height: 1.45;
-      max-width: 540px;
-    }
-
-    .badge {
-      font-weight: 900;
-      color: #FFD700;
-      margin-bottom: 22px;
-      display: block;
-      font-size: 1rem;
-    }
-
+    /* pulse image */
     .pulse-img {
-      width: 150px;
-      height: 150px;
+      width: 130px;
+      height: 130px;
       object-fit: cover;
       border-radius: 50%;
       display: block;
-      margin: 0 auto 22px;
-      box-shadow: 0 5px 22px rgba(229,57,53,0.7);
-      animation: pulse 1.5s infinite;
+      margin: 0 auto 28px;
+      border: 3px solid var(--red);
+      box-shadow: 0 0 28px var(--red-glow), 0 0 60px rgba(229,57,53,.15);
+      animation: pulseImg 1.8s ease-in-out infinite, fadeUp .6s .1s ease both;
       cursor: pointer;
-      border: 3px solid #E53935;
+      transition: transform .2s;
+    }
+    .pulse-img:hover { transform: scale(1.06); }
+    @keyframes pulseImg {
+      0%,100% { box-shadow: 0 0 28px var(--red-glow), 0 0 60px rgba(229,57,53,.15); }
+      50%      { box-shadow: 0 0 44px rgba(229,57,53,.7), 0 0 80px rgba(229,57,53,.25); }
     }
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.08); }
-      100% { transform: scale(1); }
+    /* headline */
+    .headline {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      line-height: 1.1;
+      font-size: clamp(2.2rem, 6.5vw, 4.2rem);
+      margin-bottom: 16px;
+      text-shadow: 0 2px 12px rgba(0,0,0,.6);
+      animation: fadeUp .6s .18s ease both;
+    }
+    .headline .red { color: var(--red); }
+
+    /* subtitle */
+    .subtitle {
+      font-size: clamp(.95rem, 2.4vw, 1.12rem);
+      color: var(--text-sub);
+      max-width: 480px;
+      line-height: 1.6;
+      margin-bottom: 10px;
+      animation: fadeUp .6s .28s ease both;
     }
 
+    /* badge */
+    .badge-text {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      color: var(--gold);
+      font-size: 1rem;
+      margin-bottom: 32px;
+      animation: fadeUp .6s .36s ease both;
+    }
+
+    /* CTA button */
     .cta-button {
       display: block;
       width: 100%;
-      max-width: 430px;
-      margin: 0 auto;
+      max-width: 440px;
       padding: 20px 28px;
-      background: linear-gradient(135deg, #E53935, #b91c1c);
+      background: linear-gradient(135deg, var(--red), var(--red-deep));
       color: #fff;
-      font-size: 1.35rem;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.2rem;
       font-weight: 900;
-      border-radius: 14px;
+      border-radius: 16px;
       text-decoration: none;
-      box-shadow: 0 8px 22px rgba(229,57,53,0.5);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 8px 28px var(--red-glow), 0 2px 6px rgba(0,0,0,.3);
       cursor: pointer;
+      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+      letter-spacing: .03em;
+      animation: fadeUp .6s .44s ease both;
+      border: none;
     }
-
     .cta-button:hover {
-      transform: scale(1.03);
-      box-shadow: 0 10px 28px rgba(229,57,53,0.65);
+      transform: translateY(-3px) scale(1.015);
+      filter: brightness(1.08);
+      box-shadow: 0 12px 36px rgba(229,57,53,.65);
     }
+    .cta-button:active { transform: scale(.98); }
 
     .small-note {
       margin-top: 12px;
-      color: #bdbdbd;
-      font-size: 0.92rem;
+      color: var(--text-muted);
+      font-size: .88rem;
+      animation: fadeUp .6s .5s ease both;
     }
 
+    /* social proof */
     .social-proof {
-      margin-top: 24px;
-      font-size: 1.12rem;
-      color: #FFD700;
+      margin-top: 22px;
+      font-family: 'Nunito', sans-serif;
       font-weight: 900;
+      font-size: 1.05rem;
+      color: var(--gold);
+      animation: fadeUp .6s .56s ease both;
     }
 
+    /* proof pills */
+    .proof {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 16px;
+      animation: fadeUp .6s .62s ease both;
+    }
+    .proof-pill {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 30px;
+      padding: 6px 14px;
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--text-sub);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      backdrop-filter: blur(4px);
+    }
+    .proof-pill .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--red);
+      animation: blink 1.4s ease-in-out infinite;
+    }
+    @keyframes blink {
+      0%,100%{ opacity:1; } 50%{ opacity:.3; }
+    }
+
+    /* secondary box */
     .secondary-box {
-      margin: 30px auto 0;
-      max-width: 430px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 16px;
-      padding: 18px;
+      margin: 32px auto 0;
+      width: 100%;
+      max-width: 440px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 18px;
+      padding: 20px;
       text-align: left;
+      animation: fadeUp .6s .7s ease both;
+      backdrop-filter: blur(6px);
     }
-
     .secondary-box strong {
       display: block;
-      color: #ffffff;
-      font-size: 1.05rem;
-      margin-bottom: 6px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      color: #fff;
+      font-size: 1rem;
+      margin-bottom: 8px;
     }
-
     .secondary-box p {
-      color: #cfcfcf;
-      font-size: 0.95rem;
-      line-height: 1.4;
+      color: var(--text-sub);
+      font-size: .92rem;
+      line-height: 1.5;
       margin: 0 0 14px;
     }
-
     .secondary-button {
       display: block;
       text-align: center;
-      padding: 14px 18px;
+      padding: 13px 18px;
       border-radius: 12px;
-      background: #222;
+      background: #1a1a1a;
       color: #fff;
-      border: 1px solid #444;
+      border: 1px solid #3a3a3a;
       text-decoration: none;
-      font-weight: 700;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: .95rem;
       cursor: pointer;
+      transition: border-color .2s, background .2s;
+    }
+    .secondary-button:hover {
+      background: #222;
+      border-color: #666;
+    }
+
+    /* features */
+    .features {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      padding: 40px 20px 60px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .feat-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 16px;
+      padding: 22px 24px;
+      flex: 1 1 180px;
+      text-align: center;
+      transition: border-color .2s;
+    }
+    .feat-card:hover { border-color: rgba(229,57,53,.4); }
+    .feat-icon { font-size: 1.8rem; margin-bottom: 8px; }
+    .feat-title {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: .92rem;
+      margin-bottom: 5px;
+    }
+    .feat-desc { font-size: .8rem; color: var(--text-sub); line-height: 1.5; }
+
+    /* scroll hint */
+    .scroll-hint {
+      position: absolute;
+      bottom: 22px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 5px;
+      color: rgba(255,255,255,.25);
+      font-size: .68rem; letter-spacing: .08em; text-transform: uppercase;
+      animation: fadeIn 1s 1.2s ease both;
+    }
+    .scroll-hint .chevron {
+      width: 16px; height: 16px;
+      border-right: 2px solid rgba(255,255,255,.25);
+      border-bottom: 2px solid rgba(255,255,255,.25);
+      transform: rotate(45deg);
+      animation: bounce 1.8s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%,100%{ transform:rotate(45deg) translateY(0); }
+      50%{ transform:rotate(45deg) translateY(5px); }
+    }
+    @keyframes fadeUp {
+      from{ opacity:0; transform:translateY(24px); }
+      to  { opacity:1; transform:translateY(0); }
+    }
+    @keyframes fadeIn {
+      from{ opacity:0; } to{ opacity:1; }
     }
 
     footer {
       margin-top: auto;
       padding: 18px;
-      font-size: 0.78rem;
+      font-size: .76rem;
       text-align: center;
-      color: #a8a8a8;
-      background-color: #181818;
+      color: #666;
+      background: #0d0d0d;
+      border-top: 1px solid rgba(255,255,255,.06);
       width: 100%;
     }
 
     @media (max-width: 480px) {
-      header {
-        padding-top: 34px;
-      }
-
-      h1 {
-        font-size: 1.8rem;
-      }
-
-      .subtitle {
-        font-size: 1rem;
-      }
-
-      .cta-button {
-        font-size: 1.15rem;
-        padding: 18px 22px;
-      }
-
-      .pulse-img {
-        width: 135px;
-        height: 135px;
-      }
+      .headline { font-size: 2rem; }
+      .subtitle { font-size: .96rem; }
+      .cta-button { font-size: 1.05rem; padding: 17px 20px; }
+      .pulse-img { width: 115px; height: 115px; }
     }
   </style>
 </head>
-
 <body>
 
-<header>
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Peças com desconto</span>
+    <span>Acessórios automotivos</span>
+    <span>Ofertas verificadas</span>
+    <span>Cupons todos os dias</span>
+    <span>Até 70% OFF</span>
+    <span>Links oficiais</span>
+    <span>Bugs de preço</span>
+    <span>Grupo gratuito</span>
+    <!-- loop -->
+    <span>Peças com desconto</span>
+    <span>Acessórios automotivos</span>
+    <span>Ofertas verificadas</span>
+    <span>Cupons todos os dias</span>
+    <span>Até 70% OFF</span>
+    <span>Links oficiais</span>
+    <span>Bugs de preço</span>
+    <span>Grupo gratuito</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+
   <span class="top-label">Grupo gratuito no WhatsApp</span>
 
-  <h1>🚗 Promoções <span>Automotivas</span> todos os dias</h1>
+  <img src="https://i.postimg.cc/prSYnT3Q/fotoooo.jpg"
+       alt="Promoções Automotivas"
+       class="pulse-img"
+       onclick="trackLeadAndRedirect('https://chat.whatsapp.com/HVAOQnbGmIw9w9QHkdAhy5?mode=gi_t','automotivo')" />
+
+  <h1 class="headline">🚗 Promoções <span class="red">Automotivas</span><br/>todos os dias</h1>
 
   <p class="subtitle">
     Entre no grupo e receba ofertas de peças, acessórios, carros, cupons e achados automotivos direto no WhatsApp.
   </p>
 
-  <span class="badge">🔥 OFERTAS DE ATÉ 70% OFF</span>
-
-  <img src="https://i.postimg.cc/prSYnT3Q/fotoooo.jpg"
-       alt="Promoções Automotivas"
-       class="pulse-img"
-       onclick="trackLeadAndRedirect('https://chat.whatsapp.com/HVAOQnbGmIw9w9QHkdAhy5?mode=gi_t', 'automotivo')">
+  <p class="badge-text">🔥 OFERTAS DE ATÉ 70% OFF</p>
 
   <a class="cta-button"
-     onclick="trackLeadAndRedirect('https://chat.whatsapp.com/HVAOQnbGmIw9w9QHkdAhy5?mode=gi_t', 'automotivo')">
+     onclick="trackLeadAndRedirect('https://chat.whatsapp.com/HVAOQnbGmIw9w9QHkdAhy5?mode=gi_t','automotivo')">
     ENTRAR NO GRUPO AUTOMOTIVO
   </a>
 
-  <div class="small-note">Acesso gratuito • Ofertas atualizadas diariamente</div>
+  <p class="small-note">Acesso gratuito • Ofertas atualizadas diariamente</p>
 
-  <div class="social-proof">💥 SOMOS + DE 15 MIL MEMBROS 💥</div>
+  <p class="social-proof">💥 SOMOS + DE 15 MIL MEMBROS 💥</p>
+
+  <div class="proof">
+    <div class="proof-pill"><span class="dot"></span> Ofertas ao vivo agora</div>
+    <div class="proof-pill">✅ Promoções verificadas</div>
+    <div class="proof-pill">🔒 Grupo 100% gratuito</div>
+  </div>
 
   <div class="secondary-box">
     <strong>💪 Também quer ofertas masculinas?</strong>
-    <p>
-      Temos um grupo separado com promoções de camisa, relógio, creatina, tênis, perfume e achados para o dia a dia.
-    </p>
-
+    <p>Temos um grupo separado com promoções de camisa, relógio, creatina, tênis, perfume e achados para o dia a dia.</p>
     <a class="secondary-button"
-       onclick="trackLeadAndRedirect('https://chat.whatsapp.com/JDznUZQtFL1IcmuFOC4rii?mode=gi_t', 'alphafit')">
+       onclick="trackLeadAndRedirect('https://chat.whatsapp.com/JDznUZQtFL1IcmuFOC4rii?mode=gi_t','alphafit')">
       Ver grupo AlphaFit
     </a>
   </div>
-</header>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <span>saiba mais</span>
+    <div class="chevron"></div>
+  </div>
+
+</section>
+
+<!-- FEATURE CARDS -->
+<section class="features" aria-label="Benefícios">
+  <div class="feat-card">
+    <div class="feat-icon">⚡</div>
+    <div class="feat-title">Tempo real</div>
+    <div class="feat-desc">Alertas instantâneos assim que a oferta aparecer, antes de todo mundo.</div>
+  </div>
+  <div class="feat-card">
+    <div class="feat-icon">🐛</div>
+    <div class="feat-title">Bugs de preço</div>
+    <div class="feat-desc">Erros das lojas que rendem descontos absurdos — você fica sabendo primeiro.</div>
+  </div>
+  <div class="feat-card">
+    <div class="feat-icon">🎟️</div>
+    <div class="feat-title">Cupons exclusivos</div>
+    <div class="feat-desc">Cupons negociados direto com as lojas para os membros do grupo.</div>
+  </div>
+  <div class="feat-card">
+    <div class="feat-icon">✅</div>
+    <div class="feat-title">100% verificado</div>
+    <div class="feat-desc">Cada oferta é testada antes de ser publicada. Sem enganação.</div>
+  </div>
+</section>
 
 <footer>
-  Política de Privacidade | Termos de Uso<br>
+  Política de Privacidade | Termos de Uso<br/>
   Direitos Reservados
 </footer>
 
 </body>
 </html>
+
